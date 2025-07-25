@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "./supabaseClient";
 // import { getFarcasterUser } from "./farcasterAuth"; // Placeholder for Farcaster user info
+import { sdk } from '@farcaster/miniapp-sdk';
 
 const LANES = 3;
 const GAME_WIDTH = 240;
@@ -66,6 +67,9 @@ export default function CarRacingGame() {
   const gameRef = useRef<HTMLDivElement>(null);
 
   // Remove all useEffect and logic related to sound
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
   // Keyboard controls
   useEffect(() => {
     if (!started) return;
