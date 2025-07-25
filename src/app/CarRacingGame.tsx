@@ -2,23 +2,20 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "./supabaseClient";
 // import { getFarcasterUser } from "./farcasterAuth"; // Placeholder for Farcaster user info
-import { sdk } from '@farcaster/miniapp-sdk';
 
 const LANES = 3;
 const GAME_WIDTH = 240;
 const GAME_HEIGHT = 400;
-// Use the new player car image
 const PLAYER_CAR_PNGS = [
   "/player-car.png",
 ];
-// Adjust car size to be smaller for better fit
 const CAR_WIDTH = 24;
 const CAR_HEIGHT = 48;
 const OBSTACLE_WIDTH = 40;
 const OBSTACLE_HEIGHT = 60;
-const START_SPEED = 1.2; // slower start
+const START_SPEED = 1.2; 
 const MAX_SPEED = 8;
-const SPEED_INCREMENT = 0.005; // slower ramp
+const SPEED_INCREMENT = 0.005; 
 const COLORS = {
   bg: "#1a1a2a",
   road: "#444",
@@ -27,9 +24,8 @@ const COLORS = {
   border: "#0ff",
 };
 const ROAD_TEXTURE = "/road-texture.png";
-const GRACE_FRAMES = 18; // ~0.3s at 60fps
+const GRACE_FRAMES = 18; 
 
-// Use the new uploaded car images
 const OBSTACLE_CAR_PNGS = [
   "/pixel_racecar_orange.png",
   "/pixel_racecar_purple.png",
@@ -67,9 +63,6 @@ export default function CarRacingGame() {
   const gameRef = useRef<HTMLDivElement>(null);
 
   // Remove all useEffect and logic related to sound
-  useEffect(() => {
-    sdk.actions.ready();
-  }, []);
   // Keyboard controls
   useEffect(() => {
     if (!started) return;
