@@ -1,19 +1,23 @@
 {
-  "name": "Road Rush",
-  "version": "1",
-  "iconUrl": "https://fa-roadrush.vercel.app/icon.png",
-  "homeUrl": "https://fa-roadrush.vercel.app/",
-  "imageUrl": "https://fa-roadrush.vercel.app/preview.png",
-  "buttonTitle": "Play",
-  "splashImageUrl": "https://fa-roadrush.vercel.app/icon.png",
-  "splashBackgroundColor": "#1a1a2a",
-  "subtitle": "Go fast in the right track",
-  "description": "Go as fast as you can. 7000 rpm+",
-  "primaryCategory": "games",
-  "tags": [
-    "game",
-    "racing",
-    "car"
-  ],
-  "ogTitle": "Go 7000 rpm"
-}
+    "frame": {
+      "name": "Road Rush",
+      "version": "1",
+      "iconUrl": "https://fa-roadrush.vercel.app/icon.png",
+      "homeUrl": "https://fa-roadrush.vercel.app",
+      "imageUrl": "https://fa-roadrush.vercel.app/preview.png",
+      "buttonTitle": "Play",
+      "splashImageUrl": "https://fa-roadrush.vercel.app/icon.png",
+      "splashBackgroundColor": "#1a1a2a",
+      "webhookUrl": "https://fa-roadrush.vercel.app/api/webhook",
+      "subtitle": "Go fast",
+      "description": "As fast as 7000 rpm+",
+      "primaryCategory": "games",
+      "tags": [
+        "game",
+        "race",
+        "racing",
+        "car"
+      ],
+      "castShareUrl": "https://warpcast.com/~/compose?text=Beat+my+Score"
+    }
+  }
