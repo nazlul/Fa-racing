@@ -1,3 +1,4 @@
+"use client";
 import CarRacingGame from "./CarRacingGame";
 import Leaderboard from "./Leaderboard";
 import { useEffect } from "react";
