@@ -8,18 +8,30 @@ export default function Home() {
   useEffect(() => {
     const initializeSDK = () => {
       try {
-        sdk.actions.ready();
-        console.log("Page component: SDK ready() called");
+        // Check if SDK and actions are available
+        if (sdk && sdk.actions && typeof sdk.actions.ready === 'function') {
+          sdk.actions.ready();
+          console.log("Page component: SDK ready() called successfully");
+        } else {
+          console.warn("Page component: Farcaster SDK not properly initialized");
+        }
       } catch (error) {
         console.warn("Page SDK initialization error:", error);
         // Continue without throwing
       }
     };
 
-    // Delay to ensure environment is ready
-    const timer = setTimeout(initializeSDK, 200);
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeSDK);
+    } else {
+      // DOM is already ready
+      initializeSDK();
+    }
     
-    return () => clearTimeout(timer);
+    return () => {
+      document.removeEventListener('DOMContentLoaded', initializeSDK);
+    };
   }, []);
 
   return (

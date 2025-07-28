@@ -6,14 +6,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   useEffect(() => {
     const initializeSDK = () => {
       try {
-        // Check if we're in a Farcaster environment
-        if (typeof window !== 'undefined' && window.location.href.includes('farcaster')) {
+        // Check if SDK and actions are available
+        if (sdk && sdk.actions && typeof sdk.actions.ready === 'function') {
           sdk.actions.ready();
-          console.log("Farcaster SDK ready() called in Farcaster environment");
+          console.log("Farcaster SDK ready() called successfully");
         } else {
-          // In development/preview, still call ready but handle errors
-          sdk.actions.ready();
-          console.log("Farcaster SDK ready() called in development environment");
+          console.warn("Farcaster SDK not properly initialized");
         }
       } catch (error) {
         console.warn("SDK initialization error (expected in preview):", error);
@@ -21,10 +19,17 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       }
     };
 
-    // Small delay to ensure environment is ready
-    const timer = setTimeout(initializeSDK, 100);
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeSDK);
+    } else {
+      // DOM is already ready
+      initializeSDK();
+    }
     
-    return () => clearTimeout(timer);
+    return () => {
+      document.removeEventListener('DOMContentLoaded', initializeSDK);
+    };
   }, []);
 
   return <>{children}</>;
