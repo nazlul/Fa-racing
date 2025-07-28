@@ -6,8 +6,20 @@ import { sdk } from "@farcaster/miniapp-sdk";
 
 export default function Home() {
   useEffect(() => {
-    sdk.actions.ready();
-    console.log("Page component: SDK ready() called");
+    const initializeSDK = () => {
+      try {
+        sdk.actions.ready();
+        console.log("Page component: SDK ready() called");
+      } catch (error) {
+        console.warn("Page SDK initialization error:", error);
+        // Continue without throwing
+      }
+    };
+
+    // Delay to ensure environment is ready
+    const timer = setTimeout(initializeSDK, 200);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
