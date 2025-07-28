@@ -21,8 +21,8 @@
       "heroImageUrl": "https://fa-2048.vercel.app/banner.png"
     },
     "accountAssociation": {
-      "header": "eyJmaWQiOjI0ODQ5MiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDEyMWQ5NjdEZmM2Y2RlMTM0NjIyOEMxNjc4NjBBMGE4ODE5MjU4ZjcifQ",
-      "payload": "eyJkb21haW4iOiJmYS0yMDQ4LnZlcmNlbC5hcHAifQ",
-      "signature": "MHhhYjdiNjYyMGVlMjA0ZTI1ZTM0NWM1ZGRkNzgyNWNlYmVkOGEwZWZhYmQ2YzMxMTllN2VmZWFhOWQwZTY3NGZlMDU0OWVmMDFiNjEyOGY1M2UzYmEyYTM0YzFiMzkyZTE0ZWRjNTE0MjU3NjZlN2Y5ODYzMjc2NTIzMGMxZmE2YjFi"
-    }
+    "header": "eyJmaWQiOjI0ODQ5MiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDEyMWQ5NjdEZmM2Y2RlMTM0NjIyOEMxNjc4NjBBMGE4ODE5MjU4ZjcifQ",
+    "payload": "eyJkb21haW4iOiJmYS1yb2FkcnVzaC52ZXJjZWwuYXBwIn0",
+    "signature": "MHg2NTMxODlkYzYxYTc0ZDFiZWIyMzdkNGU3MzNiYjFiYmExNTRiYzZhZTc3YTUzMjM1NGJiZDg3MTZlOTg0YmI1M2UwNWQ5ZmExODlhNTQ1ZGY3YjU2ZWFiY2Y0Y2JiZDc4ZDU5MzI5OTYyOTJmOWJlNmNlMjVjYTk2NjQ1ZTQ0ZDFi"
+  }
   }
