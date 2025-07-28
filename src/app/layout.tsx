@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ClientLayout from "./ClientLayout";
+import SDKInitializer from "./SDKInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +16,22 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Road Rush",
   description: "Go fast in the right track",
+  other: {
+    "fc:miniapp": JSON.stringify({
+      version: "1",
+      imageUrl: "https://fa-roadrush.vercel.app/preview.png",
+      button: {
+        title: "Play Road Rush",
+        action: {
+          type: "launch_frame",
+          name: "Road Rush",
+          url: "https://fa-roadrush.vercel.app",
+          splashImageUrl: "https://fa-roadrush.vercel.app/icon.png",
+          splashBackgroundColor: "#1a1a2a"
+        }
+      }
+    })
+  }
 };
 
 export default function RootLayout({
@@ -28,9 +44,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        <SDKInitializer />
+        {children}
       </body>
     </html>
   );
