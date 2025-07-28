@@ -4,11 +4,11 @@ import { sdk } from "@farcaster/miniapp-sdk";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const initializeSDK = () => {
+    const initializeSDK = async () => {
       try {
         // Check if SDK and actions are available
         if (sdk && sdk.actions && typeof sdk.actions.ready === 'function') {
-          sdk.actions.ready();
+          await sdk.actions.ready();
           console.log("Farcaster SDK ready() called successfully");
         } else {
           console.warn("Farcaster SDK not properly initialized");
@@ -19,17 +19,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       }
     };
 
-    // Wait for DOM to be ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeSDK);
-    } else {
-      // DOM is already ready
-      initializeSDK();
-    }
-    
-    return () => {
-      document.removeEventListener('DOMContentLoaded', initializeSDK);
-    };
+    // Call the async function
+    initializeSDK();
   }, []);
 
   return <>{children}</>;
