@@ -34,6 +34,15 @@ export default function Home() {
     initFarcaster();
   }, []);
 
+  // Map FarcasterUser to CarRacingGame user prop shape
+  const gameUser = currentUser
+    ? {
+        username: currentUser.username,
+        pfp_url: currentUser.pfpUrl,
+        id: String(currentUser.fid),
+      }
+    : undefined;
+
   return (
     <div className="font-sans min-h-screen bg-[#181824] flex flex-col items-center justify-center p-4">
       {currentUser && (
@@ -47,7 +56,7 @@ export default function Home() {
       )}
       <h1 className="text-3xl font-extrabold text-pink-300 mb-2 pixel-font">Farcaster Pixel Racer</h1>
       <p className="text-yellow-200 mb-4 text-center">Avoid collision. Speed increases!</p>
-      <CarRacingGame />
+      <CarRacingGame user={gameUser} />
       <Leaderboard />
     </div>
   );

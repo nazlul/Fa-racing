@@ -36,7 +36,22 @@ function getRandomLane() {
   return Math.floor(Math.random() * LANES);
 }
 
-export default function CarRacingGame() {
+// Add prop type
+export type CarRacingGameProps = {
+  user?: {
+    username: string;
+    pfp_url: string;
+    id: string;
+  } | null;
+};
+
+export default function CarRacingGame({ user }: CarRacingGameProps) {
+  // Use fallback if user is not provided
+  const displayUser = user || {
+    username: "anon",
+    pfp_url: "/window.svg",
+    id: "anon",
+  };
   // Game state
   const [carLane, setCarLane] = useState(1);
   const [obstacles, setObstacles] = useState([
@@ -46,12 +61,6 @@ export default function CarRacingGame() {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [lastObstaclePassed, setLastObstaclePassed] = useState<number | null>(null);
-  // Placeholder user info
-  const user = {
-    username: "anon",
-    pfp_url: "/window.svg",
-    id: "anon",
-  };
   // const [user, setUser] = useState(null); // For real Farcaster auth
   const [playerCarIdx] = useState(() => Math.floor(Math.random() * PLAYER_CAR_PNGS.length));
   const [started, setStarted] = useState(false);
@@ -173,10 +182,10 @@ export default function CarRacingGame() {
     if (gameOver && score > 0) {
       supabase.from("leaderboard").insert([
         {
-          username: user.username,
-          pfp_url: user.pfp_url,
+          username: displayUser.username,
+          pfp_url: displayUser.pfp_url,
           score,
-          user_id: user.id,
+          user_id: displayUser.id,
         },
       ]);
     }
@@ -355,8 +364,8 @@ export default function CarRacingGame() {
       </div>
       {/* User info */}
       <div className="flex items-center gap-2 mt-2">
-        <img src={user.pfp_url} alt={user.username} className="w-8 h-8 rounded-full border-2 border-pink-400" />
-        <span className="font-bold text-pink-200">{user.username}</span>
+        <img src={displayUser.pfp_url} alt={displayUser.username} className="w-8 h-8 rounded-full border-2 border-pink-400" />
+        <span className="font-bold text-pink-200">{displayUser.username}</span>
       </div>
     </div>
   );
