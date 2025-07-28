@@ -5,6 +5,7 @@ import { sdk } from "@farcaster/miniapp-sdk";
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     sdk.actions.ready();
+    console.log("Farcaster SDK ready() called");
   }, []);
 
   return <>{children}</>;
