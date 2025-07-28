@@ -1,29 +1,29 @@
 {
-  "frame": {
-    "name": "Road Rush",
-    "version": "1",
-    "iconUrl": "https://fa-roadrush.vercel.app/icon.png",
-    "homeUrl": "https://fa-roadrush.vercel.app",
-    "imageUrl": "https://fa-roadrush.vercel.app/preview.png",
-    "splashImageUrl": "https://fa-roadrush.vercel.app/icon.png",
-    "splashBackgroundColor": "#ffffff",
-    "webhookUrl": "https://fa-roadrush.vercel.app/api/webhook",
-    "subtitle": "Go fast",
-    "description": "Go fast",
-    "primaryCategory": "games",
-    "tags": [
-      "games",
-      "gaming",
-      "car",
-      "race",
-      "racing"
-    ],
-    "ogImageUrl": "https://fa-roadrush.vercel.app/preview.png",
-    "buttonTitle": "Play"
-  },
-  "accountAssociation": {
-    "header": "eyJmaWQiOjI0ODQ5MiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDEyMWQ5NjdEZmM2Y2RlMTM0NjIyOEMxNjc4NjBBMGE4ODE5MjU4ZjcifQ",
-    "payload": "eyJkb21haW4iOiJmYS1yb2FkcnVzaC52ZXJjZWwuYXBwIn0",
-    "signature": "MHg2NTMxODlkYzYxYTc0ZDFiZWIyMzdkNGU3MzNiYjFiYmExNTRiYzZhZTc3YTUzMjM1NGJiZDg3MTZlOTg0YmI1M2UwNWQ5ZmExODlhNTQ1ZGY3YjU2ZWFiY2Y0Y2JiZDc4ZDU5MzI5OTYyOTJmOWJlNmNlMjVjYTk2NjQ1ZTQ0ZDFi"
+    "frame": {
+      "name": "Road Rush",
+      "version": "1",
+      "iconUrl": "https://fa-roadrush.vercel.app/icon.png",
+      "homeUrl": "https://fa-roadrush.vercel.app",
+      "imageUrl": "https://fa-roadrush.vercel.app/preview.png",
+      "buttonTitle": "Play",
+      "splashImageUrl": "https://fa-roadrush.vercel.app/icon.png",
+      "splashBackgroundColor": "#ffffff",
+      "webhookUrl": "https://fa-roadrush.vercel.app/api/webhook",
+      "subtitle": "Go fast",
+      "description": "Go fast",
+      "primaryCategory": "games",
+      "tags": [
+        "games",
+        "gaming",
+        "car",
+        "race",
+        "racing"
+      ],
+      "ogImageUrl": "https://fa-roadrush.vercel.app/preview.png"
+    },
+    "accountAssociation": {
+      "header": "",
+      "payload": "",
+      "signature": ""
+    }
   }
-}
