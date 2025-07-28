@@ -4,20 +4,22 @@ import { sdk } from "@farcaster/miniapp-sdk";
 export default function SignInButton() {
   const handleSignIn = async () => {
     try {
-      // Generate a random nonce (at least 8 alphanumeric characters)
       const nonce = Math.random().toString(36).substring(2, 12);
       const result = await sdk.actions.signIn({
         nonce,
         acceptAuthAddress: true,
       });
-      // You can send result.signature and result.message to your backend for verification
       alert("Signed in!\nSignature: " + result.signature);
       console.log("Sign-in result:", result);
-    } catch (error: any) {
-      if (error.name === "RejectedByUser") {
-        alert("User rejected sign-in.");
+    } catch (error: unknown) {
+      if (error && typeof error === "object" && "name" in error) {
+        if ((error as { name: string }).name === "RejectedByUser") {
+          alert("User rejected sign-in.");
+        } else {
+          alert("Sign-in failed: " + (error as { message?: string }).message);
+        }
       } else {
-        alert("Sign-in failed: " + error.message);
+        alert("Sign-in failed: Unknown error");
       }
     }
   };
