@@ -3,60 +3,44 @@ import CarRacingGame from "./CarRacingGame";
 import Leaderboard from "./Leaderboard";
 import { useEffect, useState } from "react";
 
-interface FarcasterUser {
-  fid: number;
+interface GameUser {
   username: string;
-  displayName: string;
-  pfpUrl: string;
+  pfp_url: string;
+  id: string;
 }
 
 export default function Home() {
-  const [currentUser, setCurrentUser] = useState<FarcasterUser | null>(null);
+  const [user, setUser] = useState<GameUser | null>(null);
 
   useEffect(() => {
     const initFarcaster = async () => {
       try {
         const { sdk } = await import("@farcaster/miniapp-sdk");
-        const context = await sdk.context;
-        if (context?.user) {
-          setCurrentUser({
-            fid: context.user.fid,
-            username: context.user.username || "unknown",
-            displayName: context.user.displayName || "User",
-            pfpUrl: context.user.pfpUrl || "/icon.png",
-          });
-        }
         await sdk.actions.ready();
+        const context = await sdk.context;
+        console.log("Farcaster context:", context);
+        if (context?.user) {
+          setUser({
+            username: context.user.username || "anon",
+            pfp_url: context.user.pfpUrl || "/window.svg",
+            id: String(context.user.fid),
+          });
+        } else {
+          setUser(null);
+        }
       } catch (err) {
         console.error("Farcaster SDK/context error:", err);
+        setUser(null);
       }
     };
     initFarcaster();
   }, []);
 
-  // Map FarcasterUser to CarRacingGame user prop shape
-  const gameUser = currentUser
-    ? {
-        username: currentUser.username,
-        pfp_url: currentUser.pfpUrl,
-        id: String(currentUser.fid),
-      }
-    : undefined;
-
   return (
     <div className="font-sans min-h-screen bg-[#181824] flex flex-col items-center justify-center p-4">
-      {currentUser && (
-        <div className="flex items-center mb-4">
-          <img src={currentUser.pfpUrl} alt="pfp" className="w-10 h-10 rounded-full mr-2" />
-          <div>
-            <div className="text-white font-bold">{currentUser.displayName} (@{currentUser.username})</div>
-            <div className="text-xs text-gray-400">FID: {currentUser.fid}</div>
-          </div>
-        </div>
-      )}
       <h1 className="text-3xl font-extrabold text-pink-300 mb-2 pixel-font">Farcaster Pixel Racer</h1>
       <p className="text-yellow-200 mb-4 text-center">Avoid collision. Speed increases!</p>
-      <CarRacingGame user={gameUser} />
+      <CarRacingGame user={user} />
       <Leaderboard />
     </div>
   );
