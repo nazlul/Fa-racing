@@ -180,6 +180,13 @@ export default function CarRacingGame({ user }: CarRacingGameProps) {
   // Submit score to leaderboard
   useEffect(() => {
     if (gameOver && score > 0) {
+      console.log("Submitting score to leaderboard:", {
+        username: displayUser.username,
+        pfp_url: displayUser.pfp_url,
+        score,
+        user_id: displayUser.id,
+      });
+      
       supabase.from("leaderboard").insert([
         {
           username: displayUser.username,
@@ -187,9 +194,15 @@ export default function CarRacingGame({ user }: CarRacingGameProps) {
           score,
           user_id: displayUser.id,
         },
-      ]);
+      ]).then(({ data, error }) => {
+        if (error) {
+          console.error("Error submitting score:", error);
+        } else {
+          console.log("Score submitted successfully:", data);
+        }
+      });
     }
-  }, [gameOver]);
+  }, [gameOver, score, displayUser.username, displayUser.pfp_url, displayUser.id]);
 
   // Restart
   function restart() {
